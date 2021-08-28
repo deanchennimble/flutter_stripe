@@ -62,9 +62,9 @@ class StripeSdkCardPlatformView(
             if (shouldApplyFix) {
                 // Temporal fix to https://github.com/flutter/flutter/issues/81029
                 val binding = CardInputWidgetBinding.bind(cardView.mCardWidget)
-                binding.cardNumberEditText.inputType = InputType.TYPE_CLASS_TEXT
-                binding.cvcEditText.inputType = InputType.TYPE_CLASS_TEXT
-                binding.expiryDateEditText.inputType = InputType.TYPE_CLASS_TEXT
+                binding.cardNumberEditText.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                binding.cvcEditText.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                binding.expiryDateEditText.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             }
         } catch (e: Exception) {
             Log.e("Stripe Plugin", "Error", e)
