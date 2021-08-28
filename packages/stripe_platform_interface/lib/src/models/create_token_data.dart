@@ -26,6 +26,42 @@ class CreateTokenParams with _$CreateTokenParams {
 
 @freezed
 
+/// parameters that are used to create a token from Apple Pay.
+///
+/// At this moment only card tokens are supported.
+class CreateApplePayTokenParams with _$CreateApplePayTokenParams {
+  const factory CreateApplePayTokenParams({
+    /// Type of token.
+    @Default(TokenType.Card) TokenType type,
+
+    /// amount to be charged
+    @Default(0.0) double amount,
+  }) = _CreateApplePayTokenParams;
+
+  factory CreateApplePayTokenParams.fromJson(Map<String, dynamic> json) =>
+      _$CreateApplePayTokenParamsFromJson(json);
+}
+
+@freezed
+
+/// parameters that are used to create a token from Apple Pay.
+///
+/// At this moment only card tokens are supported.
+class CreateGooglePayTokenParams with _$CreateGooglePayTokenParams {
+  const factory CreateGooglePayTokenParams({
+    /// Type of token.
+    @Default(TokenType.Card) TokenType type,
+
+    /// amount to be charged
+    @Default(0.0) double amount,
+  }) = _CreateGooglePayTokenParams;
+
+  factory CreateGooglePayTokenParams.fromJson(Map<String, dynamic> json) =>
+      _$CreateGooglePayTokenParamsFromJson(json);
+}
+
+@freezed
+
 /// Data  that provides information about the token
 class TokenData with _$TokenData {
   const factory TokenData({

@@ -153,6 +153,31 @@ class Stripe {
     }
   }
 
+  /// Creates token from Apple Pay
+  Future<TokenData> createApplePayToken(CreateApplePayTokenParams params) async {
+    await _awaitForSettings();
+    try {
+      final tokenData = await _platform.createApplePayToken(params);
+      return tokenData;
+    } on StripeError catch (error) {
+      throw StripeError(message: error.message, code: error.message);
+    }
+  }
+
+  /// TODO::
+  /// Creates token from Google Pay
+  /*
+  Future<TokenData> createGooglePayToken(CreateGooglePayTokenParams params) async {
+    await _awaitForSettings();
+    try {
+      final tokenData = await _platform.createGooglePayToken(params);
+      return tokenData;
+    } on StripeError catch (error) {
+      throw StripeError(message: error.message, code: error.message);
+    }
+  }
+  */
+
   /// Retrieves a [PaymentIntent] using the provided [clientSecret].
   ///
   /// Throws a [StripeException] in case retrieving the intent fails.

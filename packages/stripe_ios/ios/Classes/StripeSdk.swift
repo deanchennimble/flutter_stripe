@@ -2,7 +2,7 @@ import PassKit
 import Stripe
 
 @objc(StripeSdk)
-public class StripeSdk: RCTEventEmitter, STPApplePayContextDelegate, STPBankSelectionViewControllerDelegate, UIAdaptivePresentationControllerDelegate {
+public class StripeSdk: RCTEventEmitter, STPApplePayContextDelegate, STPBankSelectionViewControllerDelegate, PKPaymentAuthorizationViewControllerDelegate, UIAdaptivePresentationControllerDelegate {
     var merchantIdentifier: String? = nil
     
     private var paymentSheet: PaymentSheet?
@@ -494,7 +494,7 @@ public class StripeSdk: RCTEventEmitter, STPApplePayContextDelegate, STPBankSele
                 resolve(Errors.createError(CreateTokenErrorType.Failed.rawValue, type + " type is not supported yet"))
             }
         }
-        
+
         let cardFieldUIManager = bridge.module(forName: "CardFieldManager") as? CardFieldManager
         let cardFieldView = cardFieldUIManager?.getCardFieldReference(id: CARD_FIELD_INSTANCE_ID) as? CardFieldView
         
@@ -519,6 +519,86 @@ public class StripeSdk: RCTEventEmitter, STPApplePayContextDelegate, STPBankSele
             }
         }
     }
+
+    @objc(createApplePayToken:resolver:rejecter:)
+    func createApplePayToken(
+        params: NSDictionary,
+        resolver resolve: @escaping RCTPromiseResolveBlock,
+        rejecter reject: @escaping RCTPromiseRejectBlock
+    ) -> Void {
+        let amount = params["amount"] as? Double
+
+        if let type = params["type"] as? String {
+            if (type != "Card") {
+                resolve(Errors.createError(CreateTokenErrorType.Failed.rawValue, type + " type is not supported yet"))
+            }
+        }
+
+        handleApplePay(totalAmount: amount ?? 0.0, completion: { (success:Bool)->Void in
+            if (success) {
+                resolve(Mappers.createResult("token", Mappers.mapFromToken(token: self.applePayToken!)))
+            } else {
+                resolve(Errors.createError(CreateTokenErrorType.Failed.rawValue, "Apple Pay failed"))
+            }
+        })
+        return
+    }
+
+    var applePayCompletionBlock: ((Bool)->Void)? = nil
+    var applePaySuccess: Bool = false
+    var applePayToken: STPToken? = nil
+
+    func handleApplePay(totalAmount: Double, completion: @escaping (Bool)->Void) {
+        self.applePayCompletionBlock = completion
+            let merchantIdentifier = "merchant.com.nimblerx.NimbleRx"
+            let paymentRequest = StripeAPI.paymentRequest(withMerchantIdentifier: merchantIdentifier, country: "US", currency: "USD")
+
+            let total = NSDecimalNumber(value: totalAmount)
+            // Configure the line items on the payment request
+            paymentRequest.paymentSummaryItems = [
+                // The final line should represent your company;
+                // it'll be prepended with the word "Pay" (i.e. "Pay NimbleRx $50")
+                PKPaymentSummaryItem(label: "Nimble", amount: total),
+            ]
+
+            if StripeAPI.canSubmitPaymentRequest(paymentRequest) {
+                // Setup payment authorization view controller
+                let paymentAuthorizationViewController = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
+                paymentAuthorizationViewController?.delegate = self
+
+                // Present payment authorization view controller
+                let share = UIApplication.shared.delegate
+                share?.window??.rootViewController?.present(paymentAuthorizationViewController!, animated: true)
+            }
+            else {
+                // There is a problem with Apple Pay configuration
+                self.applePaySuccess = false
+                completion(false)
+            }
+        }
+
+    public func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, completion: @escaping (PKPaymentAuthorizationStatus) -> Void) {
+            STPAPIClient.shared.createToken(with: payment) { (token: STPToken?, error: Error?) in
+                guard let token = token, error == nil else {
+                    self.applePayCompletionBlock?(false)
+                    return
+                }
+
+                let cardTokenString: String = token.tokenId
+                self.applePayToken = token
+                self.applePaySuccess = true
+                completion(.success)
+            }
+        }
+
+    public func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+        // Dismiss payment authorization view controller
+        let share = UIApplication.shared.delegate
+        share?.window??.rootViewController?.dismiss(animated: true, completion: {
+            self.applePayCompletionBlock?(self.applePaySuccess)
+        })
+    }
+
     
     @objc(handleCardAction:resolver:rejecter:)
     func handleCardAction(
@@ -748,5 +828,22 @@ func findViewControllerPresenter(from uiViewController: UIViewController) -> UIV
 extension StripeSdk: STPAuthenticationContext {
     public func authenticationPresentingViewController() -> UIViewController {
         return findViewControllerPresenter(from: UIApplication.shared.delegate?.window??.rootViewController ?? UIViewController())
+    }
+}
+
+extension UIApplication {
+
+    class func getTopViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+
+        if let nav = base as? UINavigationController {
+            return getTopViewController(base: nav.visibleViewController)
+
+        } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
+            return getTopViewController(base: selected)
+
+        } else if let presented = base?.presentedViewController {
+            return getTopViewController(base: presented)
+        }
+        return base
     }
 }

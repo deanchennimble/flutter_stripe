@@ -71,6 +71,8 @@ public class StripePlugin: StripeSdk, FlutterPlugin {
             return createPaymentMethod(call, result: result)
         case "createToken":
             return createToken(call, result: result)
+        case "createApplePayToken":
+            return createApplePayToken(call, result: result)
         case "dangerouslyUpdateCardDetails":
             return dangerouslyUpdateCardDetails(call, result: result)
         default:
@@ -298,7 +300,18 @@ extension  StripePlugin {
                     resolver: resolver(for: result),
                     rejecter: rejecter(for: result))
     }
-    
+
+    public func createApplePayToken(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        guard let arguments = call.arguments as? FlutterMap,
+        let params = arguments["params"] as? NSDictionary else {
+            result(FlutterError.invalidParams)
+            return
+        }
+        createApplePayToken(params: params,
+                    resolver: resolver(for: result),
+                    rejecter: rejecter(for: result))
+    }
+
     public func dangerouslyUpdateCardDetails(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         guard let arguments = call.arguments as? FlutterMap,
         let params = arguments["params"] as? NSDictionary else {

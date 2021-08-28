@@ -210,6 +210,385 @@ abstract class _CreateTokenParams implements CreateTokenParams {
       throw _privateConstructorUsedError;
 }
 
+CreateApplePayTokenParams _$CreateApplePayTokenParamsFromJson(
+    Map<String, dynamic> json) {
+  return _CreateApplePayTokenParams.fromJson(json);
+}
+
+/// @nodoc
+class _$CreateApplePayTokenParamsTearOff {
+  const _$CreateApplePayTokenParamsTearOff();
+
+  _CreateApplePayTokenParams call(
+      {TokenType type = TokenType.Card, double amount = 0.0}) {
+    return _CreateApplePayTokenParams(
+      type: type,
+      amount: amount,
+    );
+  }
+
+  CreateApplePayTokenParams fromJson(Map<String, Object> json) {
+    return CreateApplePayTokenParams.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $CreateApplePayTokenParams = _$CreateApplePayTokenParamsTearOff();
+
+/// @nodoc
+mixin _$CreateApplePayTokenParams {
+  /// Type of token.
+  TokenType get type => throw _privateConstructorUsedError;
+
+  /// amount to be charged
+  double get amount => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CreateApplePayTokenParamsCopyWith<CreateApplePayTokenParams> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CreateApplePayTokenParamsCopyWith<$Res> {
+  factory $CreateApplePayTokenParamsCopyWith(CreateApplePayTokenParams value,
+          $Res Function(CreateApplePayTokenParams) then) =
+      _$CreateApplePayTokenParamsCopyWithImpl<$Res>;
+  $Res call({TokenType type, double amount});
+}
+
+/// @nodoc
+class _$CreateApplePayTokenParamsCopyWithImpl<$Res>
+    implements $CreateApplePayTokenParamsCopyWith<$Res> {
+  _$CreateApplePayTokenParamsCopyWithImpl(this._value, this._then);
+
+  final CreateApplePayTokenParams _value;
+  // ignore: unused_field
+  final $Res Function(CreateApplePayTokenParams) _then;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? amount = freezed,
+  }) {
+    return _then(_value.copyWith(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TokenType,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$CreateApplePayTokenParamsCopyWith<$Res>
+    implements $CreateApplePayTokenParamsCopyWith<$Res> {
+  factory _$CreateApplePayTokenParamsCopyWith(_CreateApplePayTokenParams value,
+          $Res Function(_CreateApplePayTokenParams) then) =
+      __$CreateApplePayTokenParamsCopyWithImpl<$Res>;
+  @override
+  $Res call({TokenType type, double amount});
+}
+
+/// @nodoc
+class __$CreateApplePayTokenParamsCopyWithImpl<$Res>
+    extends _$CreateApplePayTokenParamsCopyWithImpl<$Res>
+    implements _$CreateApplePayTokenParamsCopyWith<$Res> {
+  __$CreateApplePayTokenParamsCopyWithImpl(_CreateApplePayTokenParams _value,
+      $Res Function(_CreateApplePayTokenParams) _then)
+      : super(_value, (v) => _then(v as _CreateApplePayTokenParams));
+
+  @override
+  _CreateApplePayTokenParams get _value =>
+      super._value as _CreateApplePayTokenParams;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? amount = freezed,
+  }) {
+    return _then(_CreateApplePayTokenParams(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TokenType,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_CreateApplePayTokenParams implements _CreateApplePayTokenParams {
+  const _$_CreateApplePayTokenParams(
+      {this.type = TokenType.Card, this.amount = 0.0});
+
+  factory _$_CreateApplePayTokenParams.fromJson(Map<String, dynamic> json) =>
+      _$_$_CreateApplePayTokenParamsFromJson(json);
+
+  @JsonKey(defaultValue: TokenType.Card)
+  @override
+
+  /// Type of token.
+  final TokenType type;
+  @JsonKey(defaultValue: 0.0)
+  @override
+
+  /// amount to be charged
+  final double amount;
+
+  @override
+  String toString() {
+    return 'CreateApplePayTokenParams(type: $type, amount: $amount)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _CreateApplePayTokenParams &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(amount);
+
+  @JsonKey(ignore: true)
+  @override
+  _$CreateApplePayTokenParamsCopyWith<_CreateApplePayTokenParams>
+      get copyWith =>
+          __$CreateApplePayTokenParamsCopyWithImpl<_CreateApplePayTokenParams>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_CreateApplePayTokenParamsToJson(this);
+  }
+}
+
+abstract class _CreateApplePayTokenParams implements CreateApplePayTokenParams {
+  const factory _CreateApplePayTokenParams({TokenType type, double amount}) =
+      _$_CreateApplePayTokenParams;
+
+  factory _CreateApplePayTokenParams.fromJson(Map<String, dynamic> json) =
+      _$_CreateApplePayTokenParams.fromJson;
+
+  @override
+
+  /// Type of token.
+  TokenType get type => throw _privateConstructorUsedError;
+  @override
+
+  /// amount to be charged
+  double get amount => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$CreateApplePayTokenParamsCopyWith<_CreateApplePayTokenParams>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+CreateGooglePayTokenParams _$CreateGooglePayTokenParamsFromJson(
+    Map<String, dynamic> json) {
+  return _CreateGooglePayTokenParams.fromJson(json);
+}
+
+/// @nodoc
+class _$CreateGooglePayTokenParamsTearOff {
+  const _$CreateGooglePayTokenParamsTearOff();
+
+  _CreateGooglePayTokenParams call(
+      {TokenType type = TokenType.Card, double amount = 0.0}) {
+    return _CreateGooglePayTokenParams(
+      type: type,
+      amount: amount,
+    );
+  }
+
+  CreateGooglePayTokenParams fromJson(Map<String, Object> json) {
+    return CreateGooglePayTokenParams.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $CreateGooglePayTokenParams = _$CreateGooglePayTokenParamsTearOff();
+
+/// @nodoc
+mixin _$CreateGooglePayTokenParams {
+  /// Type of token.
+  TokenType get type => throw _privateConstructorUsedError;
+
+  /// amount to be charged
+  double get amount => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CreateGooglePayTokenParamsCopyWith<CreateGooglePayTokenParams>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CreateGooglePayTokenParamsCopyWith<$Res> {
+  factory $CreateGooglePayTokenParamsCopyWith(CreateGooglePayTokenParams value,
+          $Res Function(CreateGooglePayTokenParams) then) =
+      _$CreateGooglePayTokenParamsCopyWithImpl<$Res>;
+  $Res call({TokenType type, double amount});
+}
+
+/// @nodoc
+class _$CreateGooglePayTokenParamsCopyWithImpl<$Res>
+    implements $CreateGooglePayTokenParamsCopyWith<$Res> {
+  _$CreateGooglePayTokenParamsCopyWithImpl(this._value, this._then);
+
+  final CreateGooglePayTokenParams _value;
+  // ignore: unused_field
+  final $Res Function(CreateGooglePayTokenParams) _then;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? amount = freezed,
+  }) {
+    return _then(_value.copyWith(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TokenType,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$CreateGooglePayTokenParamsCopyWith<$Res>
+    implements $CreateGooglePayTokenParamsCopyWith<$Res> {
+  factory _$CreateGooglePayTokenParamsCopyWith(
+          _CreateGooglePayTokenParams value,
+          $Res Function(_CreateGooglePayTokenParams) then) =
+      __$CreateGooglePayTokenParamsCopyWithImpl<$Res>;
+  @override
+  $Res call({TokenType type, double amount});
+}
+
+/// @nodoc
+class __$CreateGooglePayTokenParamsCopyWithImpl<$Res>
+    extends _$CreateGooglePayTokenParamsCopyWithImpl<$Res>
+    implements _$CreateGooglePayTokenParamsCopyWith<$Res> {
+  __$CreateGooglePayTokenParamsCopyWithImpl(_CreateGooglePayTokenParams _value,
+      $Res Function(_CreateGooglePayTokenParams) _then)
+      : super(_value, (v) => _then(v as _CreateGooglePayTokenParams));
+
+  @override
+  _CreateGooglePayTokenParams get _value =>
+      super._value as _CreateGooglePayTokenParams;
+
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? amount = freezed,
+  }) {
+    return _then(_CreateGooglePayTokenParams(
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TokenType,
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_CreateGooglePayTokenParams implements _CreateGooglePayTokenParams {
+  const _$_CreateGooglePayTokenParams(
+      {this.type = TokenType.Card, this.amount = 0.0});
+
+  factory _$_CreateGooglePayTokenParams.fromJson(Map<String, dynamic> json) =>
+      _$_$_CreateGooglePayTokenParamsFromJson(json);
+
+  @JsonKey(defaultValue: TokenType.Card)
+  @override
+
+  /// Type of token.
+  final TokenType type;
+  @JsonKey(defaultValue: 0.0)
+  @override
+
+  /// amount to be charged
+  final double amount;
+
+  @override
+  String toString() {
+    return 'CreateGooglePayTokenParams(type: $type, amount: $amount)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _CreateGooglePayTokenParams &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.amount, amount) ||
+                const DeepCollectionEquality().equals(other.amount, amount)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(amount);
+
+  @JsonKey(ignore: true)
+  @override
+  _$CreateGooglePayTokenParamsCopyWith<_CreateGooglePayTokenParams>
+      get copyWith => __$CreateGooglePayTokenParamsCopyWithImpl<
+          _CreateGooglePayTokenParams>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_CreateGooglePayTokenParamsToJson(this);
+  }
+}
+
+abstract class _CreateGooglePayTokenParams
+    implements CreateGooglePayTokenParams {
+  const factory _CreateGooglePayTokenParams({TokenType type, double amount}) =
+      _$_CreateGooglePayTokenParams;
+
+  factory _CreateGooglePayTokenParams.fromJson(Map<String, dynamic> json) =
+      _$_CreateGooglePayTokenParams.fromJson;
+
+  @override
+
+  /// Type of token.
+  TokenType get type => throw _privateConstructorUsedError;
+  @override
+
+  /// amount to be charged
+  double get amount => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$CreateGooglePayTokenParamsCopyWith<_CreateGooglePayTokenParams>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 TokenData _$TokenDataFromJson(Map<String, dynamic> json) {
   return _TokenData.fromJson(json);
 }

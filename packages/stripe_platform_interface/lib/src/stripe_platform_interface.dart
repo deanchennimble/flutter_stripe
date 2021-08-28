@@ -77,4 +77,13 @@ abstract class StripePlatform extends PlatformInterface {
   /// or storing full card details! See the docs for
   /// details: https://stripe.com/docs/security/guide#validating-pci-compliance
   Future<void> dangerouslyUpdateCardDetails(CardDetails card);
+
+  /// Creates a token for card from Apple Pay
+  Future<TokenData> createApplePayToken(CreateApplePayTokenParams params);
+
+  // TODO::
+  /// Creates a token for card from Google Pay
+  /*
+  Future<TokenData> createGooglePayToken(CreateGooglePayTokenParams params);
+   */
 }

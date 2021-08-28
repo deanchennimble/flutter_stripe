@@ -208,6 +208,29 @@ class MethodChannelStripe extends StripePlatform {
   }
 
   @override
+  Future<TokenData> createApplePayToken(CreateApplePayTokenParams params) async {
+    final result = await _methodChannel.invokeMapMethod<String, dynamic>(
+        'createApplePayToken', {'params': params.toJson()});
+
+    return ResultParser<TokenData>(
+        parseJson: (json) => TokenData.fromJson(json))
+        .parse(result: result!, successResultKey: 'token');
+  }
+  
+  // TODO::
+  /*
+  @override
+  Future<TokenData> createGooglePayToken(CreateGooglePayTokenParams params) async {
+    final result = await _methodChannel.invokeMapMethod<String, dynamic>(
+        'createGooglePayToken', {'params': params.toJson()});
+
+    return ResultParser<TokenData>(
+        parseJson: (json) => TokenData.fromJson(json))
+        .parse(result: result!, successResultKey: 'token');
+  }
+   */
+  
+  @override
   Future<void> dangerouslyUpdateCardDetails(CardDetails card) async {
     await _methodChannel.invokeMethod('dangerouslyUpdateCardDetails', {
       'params': card.toJson(),

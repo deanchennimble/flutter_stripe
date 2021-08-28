@@ -64,6 +64,38 @@ const _$TokenTypeEnumMap = {
   TokenType.Card: 'Card',
 };
 
+_$_CreateApplePayTokenParams _$_$_CreateApplePayTokenParamsFromJson(
+    Map<String, dynamic> json) {
+  return _$_CreateApplePayTokenParams(
+    type: _$enumDecodeNullable(_$TokenTypeEnumMap, json['type']) ??
+        TokenType.Card,
+    amount: (json['amount'] as num?)?.toDouble() ?? 0.0,
+  );
+}
+
+Map<String, dynamic> _$_$_CreateApplePayTokenParamsToJson(
+        _$_CreateApplePayTokenParams instance) =>
+    <String, dynamic>{
+      'type': _$TokenTypeEnumMap[instance.type],
+      'amount': instance.amount,
+    };
+
+_$_CreateGooglePayTokenParams _$_$_CreateGooglePayTokenParamsFromJson(
+    Map<String, dynamic> json) {
+  return _$_CreateGooglePayTokenParams(
+    type: _$enumDecodeNullable(_$TokenTypeEnumMap, json['type']) ??
+        TokenType.Card,
+    amount: (json['amount'] as num?)?.toDouble() ?? 0.0,
+  );
+}
+
+Map<String, dynamic> _$_$_CreateGooglePayTokenParamsToJson(
+        _$_CreateGooglePayTokenParams instance) =>
+    <String, dynamic>{
+      'type': _$TokenTypeEnumMap[instance.type],
+      'amount': instance.amount,
+    };
+
 _$_TokenData _$_$_TokenDataFromJson(Map<String, dynamic> json) {
   return _$_TokenData(
     id: json['id'] as String,
