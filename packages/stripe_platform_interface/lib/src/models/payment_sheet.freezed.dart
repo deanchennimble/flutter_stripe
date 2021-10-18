@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'payment_sheet.dart';
 
@@ -58,11 +59,11 @@ const $SetupPaymentSheetParameters = _$SetupPaymentSheetParametersTearOff();
 
 /// @nodoc
 mixin _$SetupPaymentSheetParameters {
-  ///Whether or not to display a custom flow
+  /// Whether or not to use a custom flow.
   ///
-  /// When value is `false` make sure [PresentPaymentSheetParameters.confirmPayment]
-  /// is set to `true`. If value is set to `true` [PresentPaymentSheetParameters.confirmPayment]
-  /// has to be set to `false`.
+  /// If this value is true, the payment sheet will allow to select a payment method
+  /// and a later confirmation will be needed by calling [confirmPaymentSheetPayment]
+  /// By default, false.
   bool get customFlow => throw _privateConstructorUsedError;
 
   /// The identifier of the Stripe Customer object.
@@ -315,16 +316,16 @@ class _$_SetupParameters implements _SetupParameters {
       this.testEnv = false});
 
   factory _$_SetupParameters.fromJson(Map<String, dynamic> json) =>
-      _$_$_SetupParametersFromJson(json);
+      _$$_SetupParametersFromJson(json);
 
   @JsonKey(defaultValue: false)
   @override
 
-  ///Whether or not to display a custom flow
+  /// Whether or not to use a custom flow.
   ///
-  /// When value is `false` make sure [PresentPaymentSheetParameters.confirmPayment]
-  /// is set to `true`. If value is set to `true` [PresentPaymentSheetParameters.confirmPayment]
-  /// has to be set to `false`.
+  /// If this value is true, the payment sheet will allow to select a payment method
+  /// and a later confirmation will be needed by calling [confirmPaymentSheetPayment]
+  /// By default, false.
   final bool customFlow;
   @override
 
@@ -445,7 +446,7 @@ class _$_SetupParameters implements _SetupParameters {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SetupParametersToJson(this);
+    return _$$_SetupParametersToJson(this);
   }
 }
 
@@ -468,11 +469,11 @@ abstract class _SetupParameters implements SetupPaymentSheetParameters {
 
   @override
 
-  ///Whether or not to display a custom flow
+  /// Whether or not to use a custom flow.
   ///
-  /// When value is `false` make sure [PresentPaymentSheetParameters.confirmPayment]
-  /// is set to `true`. If value is set to `true` [PresentPaymentSheetParameters.confirmPayment]
-  /// has to be set to `false`.
+  /// If this value is true, the payment sheet will allow to select a payment method
+  /// and a later confirmation will be needed by calling [confirmPaymentSheetPayment]
+  /// By default, false.
   bool get customFlow => throw _privateConstructorUsedError;
   @override
 
@@ -657,7 +658,7 @@ class _$_PresentParameters implements _PresentParameters {
       {required this.clientSecret, this.confirmPayment = false});
 
   factory _$_PresentParameters.fromJson(Map<String, dynamic> json) =>
-      _$_$_PresentParametersFromJson(json);
+      _$$_PresentParametersFromJson(json);
 
   @override
 
@@ -705,7 +706,7 @@ class _$_PresentParameters implements _PresentParameters {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_PresentParametersToJson(this);
+    return _$$_PresentParametersToJson(this);
   }
 }
 

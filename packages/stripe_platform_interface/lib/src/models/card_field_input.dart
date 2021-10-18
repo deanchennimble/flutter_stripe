@@ -71,6 +71,30 @@ class CardStyle with _$CardStyle {
 
 @freezed
 
+/// Styiling information for the cardfield.
+class CardFormStyle with _$CardFormStyle {
+  @JsonSerializable(explicitToJson: true)
+  factory CardFormStyle({
+    @JsonKey(toJson: ColorKey.toJson, fromJson: ColorKey.fromJson)
+
+        /// Background color of the cardformfield
+        ///
+        /// Make sure that there is enough contrast with the text color.
+        Color? backgroundColor,
+  }) = _CardFormStyleConstructor;
+
+  factory CardFormStyle.fromJson(Map<String, dynamic> json) =>
+      _$CardFormStyleFromJson(json);
+
+  CardFormStyle._();
+
+  CardFormStyle apply(CardFormStyle? style) => copyWith(
+        backgroundColor: style?.backgroundColor ?? backgroundColor,
+      );
+}
+
+@freezed
+
 /// Localized text for the placeholders of the card fields.
 class CardPlaceholder with _$CardPlaceholder {
   @JsonSerializable(explicitToJson: true)
@@ -126,6 +150,8 @@ class ColorKey {
 
 /// User input details.
 class CardFieldInputDetails with _$CardFieldInputDetails {
+  const CardFieldInputDetails._();
+
   @JsonSerializable(explicitToJson: true)
   const factory CardFieldInputDetails({
     /// Indicates whether the card field input is complete.
@@ -145,6 +171,14 @@ class CardFieldInputDetails with _$CardFieldInputDetails {
 
     /// Brand of the card.
     String? brand,
+
+    /// Card number.
+    /// This information is not available by default to comply with the PCI compliance
+    String? number,
+
+    /// CVC code.
+    /// This information is not available by default to comply with the PCI compliance
+    String? cvc,
   }) = _CardFieldInputDetails;
 
   factory CardFieldInputDetails.fromJson(Map<String, dynamic> json) =>

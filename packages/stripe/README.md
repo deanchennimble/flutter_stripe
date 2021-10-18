@@ -6,8 +6,6 @@
 
 [![pub package](https://img.shields.io/pub/v/flutter_stripe.svg)](https://pub.dev/packages/flutter_stripe) ![build](https://img.shields.io/github/workflow/status/flutter-stripe/flutter_stripe/all_plugins?logo=github)
 
-> 🚨 flutter_stripe is in beta - please provide feedback (and/or contribute) if you find issues 💙️
-
 
 The Stripe Flutter SDK allows you to build delightful payment experiences in your native Android and iOS apps using Flutter. We provide powerful and customizable UI screens and elements that can be used out-of-the-box to collect your users' payment details.
 
@@ -22,7 +20,7 @@ The Stripe Flutter SDK allows you to build delightful payment experiences in you
 
 **Apple Pay**: We provide a [seamless integration with Apple Pay](https://stripe.com/docs/apple-pay).
 
-**Google Pay**: The plugin can easily act as payment provider for the [Pay plugin](#Pay-Plugin-support) that enables you to seamlessly integrate Google Pay or Apple Pay. All you need to do is add your stripe publishable key to the payment profile.
+**Google Pay**: We provide a [seamless integration with Google Pay](https://stripe.com/docs/google-pay).
 
 **Payment methods**: Accepting more [payment methods](https://stripe.com/docs/payments/payment-methods/overview) helps your business expand its global reach and improve checkout conversion.
 
@@ -103,11 +101,7 @@ class PaymentScreen extends StatelessWidget {
           customerEphemeralKeySecret: _paymentSheetData!['ephemeralKey'],
     ));
 
-     await Stripe.instance.presentPaymentSheet(
-          parameters: PresentPaymentSheetParameters(
-        clientSecret: _paymentSheetData!['paymentIntent'],
-        confirmPayment: true,
-      ));
+     await Stripe.instance.presentPaymentSheet();
   }
 
   @override
